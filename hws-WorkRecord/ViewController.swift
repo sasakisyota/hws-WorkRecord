@@ -19,11 +19,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 80
+    }
     @IBOutlet weak var tableView: UITableView!
     
-    let imageNames = ["ic_comfortable","ic_congestion","ic_normal"]
+    let imageNames = ["ic_congestion","ic_normal","ic_normal"]
 
-    let imageTitles = ["快適","混雑","普通"]
+    let imageTitles = ["函館　蔦屋書店","亀田交流プラザ","亀田交流プラザ"]
     
     let imageDescriptions = ["作業日：2021年11月21日","作業日：2021年12月12日","作業日:2021年12月12日"]
     
