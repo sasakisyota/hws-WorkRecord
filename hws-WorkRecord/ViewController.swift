@@ -8,6 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var plusButton: UIBarButtonItem!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+    }
+  
+    let imageNames = ["ic_congestion","ic_normal","ic_normal"]
+
+    let imageTitles = ["函館　蔦屋書店","亀田交流プラザ","亀田交流プラザ"]
+    
+    let imageDescriptions = ["作業日：2021年11月21日","作業日：2021年12月12日","作業日:2021年12月12日"]
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            return 3
        }
@@ -20,20 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 80
+        return 100
     }
-    @IBOutlet weak var tableView: UITableView!
-    
-    let imageNames = ["ic_congestion","ic_normal","ic_normal"]
-
-    let imageTitles = ["函館　蔦屋書店","亀田交流プラザ","亀田交流プラザ"]
-    
-    let imageDescriptions = ["作業日：2021年11月21日","作業日：2021年12月12日","作業日:2021年12月12日"]
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-    }
-  
 }
 

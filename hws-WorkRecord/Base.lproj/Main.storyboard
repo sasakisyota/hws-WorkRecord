@@ -34,8 +34,11 @@
                             <constraint firstItem="yhj-LJ-7nc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dJc-nd-BUb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="作業記録" id="SAJ-7Z-ME0"/>
+                    <navigationItem key="navigationItem" title="作業記録" id="SAJ-7Z-ME0">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="NXy-Ni-Opf"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="plusButton" destination="NXy-Ni-Opf" id="XWu-Zs-qvg"/>
                         <outlet property="tableView" destination="yhj-LJ-7nc" id="E2A-q5-MPh"/>
                     </connections>
                 </viewController>
