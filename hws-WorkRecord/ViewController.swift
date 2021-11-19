@@ -1,41 +1,69 @@
-//
-//  ViewController.swift
-//  hws-WorkRecord
-//
-//  Created by 佐々木翔太 on 2021/11/09.
-//
 
 import UIKit
-
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+ //UITableViewDelegate,UITableViewDataSourceをクラスに追加
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+ 
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var plusButton: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-    }
-  
+    //スクリーンの横幅、縦幅を定義
+    let screenWidth = Int(UIScreen.main.bounds.size.width)
+    let screenHeight = Int(UIScreen.main.bounds.size.height)
+    
+    //テーブルビューインスタンス作成
+    var WorkRecordTableView: UITableView = UITableView()
+    //テーブルに表示するセル配列
+    
     let imageNames = ["ic_congestion","ic_normal","ic_normal"]
 
-    let imageTitles = ["函館　蔦屋書店","亀田交流プラザ","亀田交流プラザ"]
+    var imageTitles = ["函館　蔦屋書店","亀田交流プラザ","亀田交流プラザ"]
     
     let imageDescriptions = ["作業日：2021年11月21日","作業日：2021年12月12日","作業日:2021年12月12日"]
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return 3
-       }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MainTableViewCell
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        cell.setCell(imageName: imageNames[indexPath.row], titleText: imageTitles[indexPath.row], descriptionText: imageDescriptions[indexPath.row])
-           return cell
+        //テーブルビューの設置場所を指定
+        WorkRecordTableView.frame = CGRect(x:screenWidth * 0/100, y:screenHeight * 10/100,
+                                 width:screenWidth * 100/100, height:screenHeight * 80/100)
+        WorkRecordTableView.delegate = self
+        WorkRecordTableView.dataSource = self
+        
+        WorkRecordTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.view.addSubview(WorkRecordTableView)
+        
+        self.WorkRecordTableView.rowHeight = 100
+        WorkRecordTableView.separatorColor = UIColor.gray
+ 
+        }
+    
+    //セクション数を指定
+    func numberOfSections(in WorkRecordTableView: UITableView) -> Int {
+        return 1
+    }
+    //表示するcellの数を指定
+    func tableView(_ WorkRecordTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return imageTitles.count
+    }
+    //cellのコンテンツ
+    func tableView(_ WorkRecordTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.text = imageTitles[indexPath.row]
+        cell.detailTextLabel?.text = imageDescriptions[indexPath.row]
+        
+        
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 100
+    //cellが選択された時の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)番セルが押された")
     }
+    
 }
 
